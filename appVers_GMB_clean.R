@@ -1,10 +1,23 @@
+#see unique platforms
+unique(df$Platform)
+
+#replace names with formal names
+
 #last 30 days' platform summary
-platGMB <- ddply(df,.(Platform),summarize,gmb=sum(gmb_plan))
+plat <- ddply(df,.(Platform),summarize,gmb=sum(gmb_plan))
 
 #platforms over time
-platGMB_date <- ddply(df,.(Platform, created_dt),summarize,gmb=sum(gmb_plan))
+platDate <- ddply(df,.(Platform, created_dt),summarize,gmb=sum(gmb_plan))
 
 #app versions over time
+platDate_AppVers <- ddply(df,.(Platform, created_dt, appVersion),summarize,gmb=sum(gmb_plan))
+
+#platform over time & country
+platDate_Country <- ddply(df,.(Platform, created_dt, buyer_country),summarize,gmb=sum(gmb_plan))
+
+#app & platform versions over time & country
+platDate_appVersCountry <- ddply(df,.(Platform, created_dt, appVersion, buyer_country),summarize,gmb=sum(gmb_plan))
+
 ##iPhone
 
 ##Android

@@ -3,7 +3,7 @@ co.created_dt,
   CASE WHEN apps.app_id IS NULL AND sess_cobrand IN 7 THEN 'FSoM'  
 WHEN apps.app_id IS  NULL THEN 'Core Site on PC'
 WHEN TRIM(apps.prdct_name) IN 'IPhoneApp' THEN 'iPhone App'
-WHEN TRIM(apps.prdct_name) IN ('Android','Android Motors') THEN 'AndroidApp'
+WHEN TRIM(apps.prdct_name) IN ('Android','Android Motors') THEN 'Android App'
 WHEN TRIM(apps.prdct_name) IN 'IPad' THEN 'iPad App'
 WHEN TRIM(apps.prdct_name) IN ('MobWeb','MobWebGXO') THEN 'Mobile Web'
 ELSE 'Other'
