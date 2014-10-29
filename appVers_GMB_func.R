@@ -1,0 +1,1 @@
+platGMB_bar <- ggplot(platGMB, aes(factor(platGMB$Platform)))

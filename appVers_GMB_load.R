@@ -5,11 +5,11 @@
 #install.packages("C:/Users/frankli/Downloads/ebaytd_1.1.tar.gz", repos = NULL, type = "source", lib="C:/Program Files/R/R-3.1.1/library")
 
 ############################################
-library('ebaytd')
-library('plyr')
-
 c <- teradataConnect()
 
+sqlPath <- 'C:/Users/frankli/Dropbox (eBayMob&Eng)/FrankL/Rproj/appVersGMB/GMB_appVers_Date.sql'
+sqlQuery <- paste(readLines(sqlPath), collapse=" ")
+df <- dbGetQuery(c,sqlQuery)
 ############################
 # #Hardcoded SQL
 # sql<-"
@@ -75,9 +75,7 @@ c <- teradataConnect()
 
 ###########################
 
-sqlPath <- 'C:/Users/frankli/Dropbox (eBayMob&Eng)/FrankL/Rproj/GMB_appVers/GMB_appVers_Date.sql'
-sqlQuery <- paste(readLines(sqlPath), collapse=" ")
-df <- dbGetQuery(c,sqlQuery)
+
 
 # sqlfile <- gsub("\t"," ",sqlfile)
 # sqlfile <- gsub(""," ",sqlfile)
