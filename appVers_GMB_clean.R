@@ -3,6 +3,8 @@ unique(df$Platform)
 
 #last 30 days' platform summary
 plat <- ddply(df,.(Platform),summarize,gmb=sum(gmb_plan))
+##sort by GMB descending
+plat$Platform <- factor(plat$Platform, levels = plat$Platform[order(plat$gmb, decreasing=TRUE)])
 
 #platforms over time
 platDate <- ddply(df,.(Platform, created_dt),summarize,gmb=sum(gmb_plan))
