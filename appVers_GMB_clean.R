@@ -1,8 +1,6 @@
 #see unique platforms
 unique(df$Platform)
 
-#replace names with formal names
-
 #last 30 days' platform summary
 plat <- ddply(df,.(Platform),summarize,gmb=sum(gmb_plan))
 
