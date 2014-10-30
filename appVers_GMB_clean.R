@@ -1,13 +1,21 @@
 #see unique platforms
 unique(df$Platform)
 
+# #change gmb to integer
+# typeof(df$gmb)
+# df$gmb <- as.integer(df$gmb)
+
 #see min & max days
 minDate <- min(df$created_dt)
 maxDate <- max(df$created_dt)
-days=maxDate-minDate+1
+
+minDate <- as.Date(minDate, "%Y-%m-%d"); minDate
+maxDate <- as.Date(maxDate, "%Y-%m-%d"); maxDate
+
+days <- as.numeric(maxDate-minDate+1); days
 
 #last 30 days' platform summary
-plat <- ddply(df,.(Platform),summarize,gmb=sum(gmb_plan)/31)
+plat <- ddply(df,.(Platform),summarize,gmb=sum(gmb_plan)/days)
 ##sort by GMB descending
 plat$Platform <- factor(plat$Platform, levels = plat$Platform[order(plat$gmb, decreasing=TRUE)])
 
