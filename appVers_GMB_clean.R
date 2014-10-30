@@ -21,6 +21,7 @@ plat$Platform <- factor(plat$Platform, levels = plat$Platform[order(plat$gmb, de
 
 #platforms over time
 platDate <- ddply(df,.(Platform, created_dt),summarize,gmb=sum(gmb_plan))
+platDate_per <- ddply(df,.(Platform, created_dt),)
 
 #app versions over time
 platDate_AppVers <- ddply(df,.(Platform, created_dt, appVersion),summarize,gmb=sum(gmb_plan))

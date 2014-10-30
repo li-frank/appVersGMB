@@ -4,18 +4,18 @@ maxDate <- format.Date(maxDate, "%m/%d/%y"); maxDate
 
 platGMB_title <- paste("GMB by Platform \n From", minDate,"to", maxDate); platGMB_title
 
-#simple bar plot of GMB by platform
+#bar plot of GMB by platform
 platGMB <- ggplot(plat, aes(x = Platform, y = gmb/1000000))
 platGMB_bar <- platGMB + geom_bar(stat="identity"); platGMB_bar
 platGMB_bar <- platGMB_bar + labs(title = platGMB_title, 
                                   x = "Platform",
                                   y = "GMB/day ($MM)"); platGMB_bar
-
 platGMB_bar <- platGMB_bar + theme_minimal(); platGMB_bar
 platGMB_bar <- platGMB_bar + theme(plot.title = element_text(size=14, face="bold", vjust=1),panel.grid.major.x = element_blank()); platGMB_bar
 platGMB_bar <- platGMB_bar + scale_y_continuous(breaks= pretty_breaks(8)); platGMB_bar
 platGMB_bar <- platGMB_bar + geom_text(label=scales::percent(plat$gmb/sum(plat$gmb)), labels=percent_format(), vjust=-0.2); platGMB_bar
-#show percentages
+
+#stacked line plot of GMB by platform
 
 
 #appendix
