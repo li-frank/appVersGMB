@@ -15,20 +15,19 @@ days <- as.numeric(maxDate-minDate+1); days
 #last 30 days' platform summary
 plat <- ddply(df,.(Platform),summarize,gmb=sum(gmb_plan)/days)
 ##sort by GMB descending
-#plat$Platform <- factor(plat$Platform, levels = plat$Platform[order(plat$gmb, decreasing=TRUE)])
+plat$Platform <- factor(plat$Platform, levels = plat$Platform[order(plat$gmb, decreasing=TRUE)])
 
 #platforms over time
 platDate <- ddply(df,.(Platform, created_dt),summarize,gmb=sum(gmb_plan))
+platDateShare <- ddply(platDate,"created_dt",transform,gmbDateShare=gmb/sum(gmb))
 
-dateShare <- function(df) {df$gmb/sum(df$gmb)}
+#reorder
 
-platDate_per <- ddply(df,.(Platform, created_dt),summarize,gmb_perc=sum(gmb_plan)); platDate_per
-dateSum <- ddply(df,.(created_dt),summarize,gmb=sum(gmb_plan))
+platDateShare$Platform <- factor(platDateShare$Platform, levels = platDateShare$Platform[order(platDateShare$gmbDateShare, decreasing=TRUE)])
+order<-platDateShare$Platform[order(platDateShare$gmbDateShare, decreasing=TRUE)]
 
 
-platDate2 <- platDate
-platDate2$Platform <- factor(platDate2$Platform, levels = platDate2$Platform[order(platDate2$gmb, decreasing=TRUE)])
-
+##############################
 #app versions over time
 platDate_AppVers <- ddply(df,.(Platform, created_dt, appVersion),summarize,gmb=sum(gmb_plan))
 
