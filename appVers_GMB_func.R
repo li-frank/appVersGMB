@@ -16,7 +16,10 @@ platGMB_bar <- platGMB_bar + scale_y_continuous(breaks= pretty_breaks(8)); platG
 platGMB_bar <- platGMB_bar + geom_text(label=scales::percent(plat$gmb/sum(plat$gmb)), labels=percent_format(), vjust=-0.2); platGMB_bar
 
 #stacked line plot of GMB by platform
-
+platTime <- ggplot(platDate, aes(x = created_dt, y = gmb, fill = Platform, group=Platform)) +  geom_area(position = 'stack'); platTime
+##remove margins from left and right
+##change colors
+##make %s
 
 #appendix
 pie <- ggplot(plat, aes(x = 1, y=gmb, fill = Platform)) + geom_bar(stat="identity") + coord_polar(theta="y"); pie
