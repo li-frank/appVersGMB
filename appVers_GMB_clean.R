@@ -22,7 +22,7 @@ platDate <- ddply(df,.(Platform, created_dt),summarize,gmb=sum(gmb_plan))
 
 dateShare <- function(df) {df$gmb/sum(df$gmb)}
 
-platDate_per <- ddply(df,.(Platform, created_dt),summarize,gmb_perc=sum(gmb_plan))
+platDate_per <- ddply(df,.(Platform, created_dt),summarize,gmb_perc=sum(gmb_plan)); platDate_per
 dateSum <- ddply(df,.(created_dt),summarize,gmb=sum(gmb_plan))
 
 
