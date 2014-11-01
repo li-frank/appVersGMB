@@ -10,6 +10,7 @@ c <- teradataConnect()
 sqlPath <- 'C:/Users/frankli/Dropbox (eBayMob&Eng)/FrankL/Rproj/appVersGMB/GMB_appVers_Date.sql'
 sqlQuery <- paste(readLines(sqlPath), collapse=" ")
 df <- dbGetQuery(c,sqlQuery)
+df2 <- df
 ############################
 # #Hardcoded SQL
 # sql<-"
