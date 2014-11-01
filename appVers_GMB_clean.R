@@ -21,9 +21,10 @@ plat$Platform <- factor(plat$Platform, levels = plat$Platform[order(plat$gmb, de
 platDate <- ddply(df,.(Platform, created_dt),summarize,gmb=sum(gmb_plan))
 platDateShare <- ddply(platDate,"created_dt",transform,gmbDateShare=gmb/sum(gmb))
 
-#reorder
+##sort
+platDateShare <- platDateShare[with(platDateShare,order(gmb,decreasing=TRUE)),]
 
-platDateShare$Platform <- factor(platDateShare$Platform, levels = platDateShare$Platform[order(platDateShare$gmbDateShare, decreasing=TRUE)])
+#platDateShare$Platform <- factor(platDateShare$Platform, levels = platDateShare$Platform[order(platDateShare$gmbDateShare, decreasing=TRUE)])
 order<-platDateShare$Platform[order(platDateShare$gmbDateShare, decreasing=TRUE)]
 
 
