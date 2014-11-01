@@ -11,7 +11,7 @@ days <- as.numeric(maxDate-minDate+1); days
 #last 30 days' platform summary
 plat <- ddply(df,.(Platform),summarize,gmb=sum(gmb_plan)/days)
 ##sort by GMB
-plat <- plat[with(plat,order(gmb)),]
+plat$Platform <-factor(plat$Platform, levels=plat[order(plat$gmb,decreasing=TRUE),"Platform"])
 
 #platforms over time
 platDate <- ddply(df,.(Platform, created_dt),summarize,gmb=sum(gmb_plan))
@@ -36,10 +36,10 @@ iphoneVersCum <- ddply(iphoneVersShare,.(appVersion),summarize,gmb=sum(gmb))
 androidVersCum <- ddply(androidVersShare,.(appVersion),summarize,gmb=sum(gmb))
 topiphoneVers <- iphoneVersCum[rev(order(iphoneVersCum$gmb)),"appVersion"][1:8]; topiphoneVers
 topandroidVers <- androidVersCum[rev(order(androidVersCum$gmb)),"appVersion"][1:8]; topandroidVers
-
 ###filter for top 10 versions
 iphoneVersShare <- iphoneVersShare[iphoneVersShare$appVersion %in% topiphoneVers,]
 androidVersShare <- androidVersShare[androidVersShare$appVersion %in% topandroidVers,]
+
 ##############################
 #app versions over time
 platDate_AppVers <- ddply(df,.(Platform, created_dt, appVersion),summarize,gmb=sum(gmb_plan))
