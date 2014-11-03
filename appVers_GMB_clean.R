@@ -31,7 +31,7 @@ platDateShare$Platform <-factor(platDateShare$Platform, levels=platDateShare[ord
 appVers <- ddply(df,.(Platform,appVersion,created_dt),summarize,gmb=sum(gmb_plan))
 appVersShare <- ddply(appVers,.(created_dt,Platform),transform,gmbDateShare=gmb/sum(gmb))
 ##sort by GMB for filling & then legend
-#appVersShare <- appVersShare[with(appVersShare,order(gmb)),]
+#appVersShare <- appVersShare[with(appVersShare,order(appVersion,decreasing=TRUE)),]
 appVersShare$appVersion <-factor(appVersShare$appVersion, levels=appVersShare[order(appVersShare$gmb,decreasing=TRUE),"appVersion"])
 ##separate sets for iPhone and Android
 iphoneVersShare <- appVersShare[appVersShare$Platform=="iPhone App",]

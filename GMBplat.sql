@@ -1,6 +1,6 @@
 SELECT
 co.created_dt,
-  CASE WHEN apps.app_id IS NULL AND sess_cobrand IN 7 THEN 'FSoM'  
+CASE WHEN apps.app_id IS NULL AND sess_cobrand IN 7 THEN 'FSoM'  
 WHEN apps.app_id IS  NULL THEN 'Core Site on PC'
 WHEN TRIM(apps.prdct_name) IN 'IPhoneApp' THEN 'iPhone App'
 WHEN TRIM(apps.prdct_name) IN ('Android','Android Motors') THEN 'Android App'
@@ -8,7 +8,6 @@ WHEN TRIM(apps.prdct_name) IN 'IPad' THEN 'iPad App'
 WHEN TRIM(apps.prdct_name) IN ('MobWeb','MobWebGXO') THEN 'Mobile Web'
 ELSE 'Other'
 END Platform,  
-appVersion,
 
 CASE WHEN buyer_country_id IN  (1, -1, 0, -999, 225, 679, 1000) THEN 'US'  
 WHEN buyer_country_id IN 3 THEN 'UK'
@@ -32,14 +31,13 @@ FROM
   leaf_categ_id,
   app_id,
   item_site_id,
-  buyer_country_id,
-  sojlib.soj_nvl(SESS_EVENT_DETAILS,'mav') appVersion
+  buyer_country_id
   
   from p_soj_cl_v.checkout_metric_item
   
   where
-  created_dt BETWEEN current_date-45 AND current_date-2
-  AND auct_end_dt >= current_date-45
+  created_dt BETWEEN current_date-93 AND current_date-2
+  AND auct_end_dt >= current_date-93
   AND ck_wacko_yn = 'N'
   AND auct_type_code NOT IN (12,15)   
 ) co 
@@ -49,7 +47,7 @@ INNER JOIN access_views.dw_category_groupings cat ON (co.leaf_categ_id = cat.lea
 LEFT JOIN access_views.dw_api_mbl_app apps ON (co.app_id = apps.app_id)
 
 WHERE  
-  cat.sap_category_id NOT IN (5,7,23,41)
+cat.sap_category_id NOT IN (5,7,23,41)
 
 GROUP BY  
-1,2,3,4;
+1,2,3;

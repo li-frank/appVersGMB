@@ -52,7 +52,5 @@ androidVers_stack <- androidVers_stack + theme(plot.title = element_text(size=14
 androidVers_stack <- androidVers_stack + scale_x_date(labels = date_format("%m/%d")); androidVers_stack
 androidVers_stack <- androidVers_stack + scale_fill_manual(values=cbPalette); androidVers_stack
 
-
-
 #appendix
 pie <- ggplot(plat, aes(x = 1, y=gmb, fill = Platform)) + geom_bar(stat="identity") + coord_polar(theta="y"); pie
