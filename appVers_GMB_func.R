@@ -1,3 +1,6 @@
+#color-blind friendly palette
+cbPalette <- c("#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
+
 #bar plot of GMB by platform
 platGMB_title <- paste("Global GMB by Platform \n", minDate,"to", maxDate); platGMB_title
 platGMB <- ggplot(plat, aes(x = Platform, y = gmb/1000000))
@@ -21,6 +24,7 @@ platDate_stack <- platDate_stack + scale_y_continuous(breaks=pretty_breaks(), la
 platDate_stack <- platDate_stack + theme_minimal(); platDate_stack
 platDate_stack <- platDate_stack + theme(plot.title = element_text(size=14, face="bold"),panel.grid.major.x = element_blank()); platDate_stack
 platDate_stack <- platDate_stack + scale_x_date(labels = date_format("%m/%d")); platDate_stack
+platDate_stack <- platDate_stack + scale_fill_manual(values=cbPalette); platDate_stack
 
 #stacked plot: GMB by iPhone app Version
 iphoneVers_title <- paste("Global iPhone App Version: GMB Share \n", minDate, "to", maxDate); iphoneVers_title
@@ -33,6 +37,7 @@ iphoneVers_stack <- iphoneVers_stack + scale_y_continuous(breaks=pretty_breaks()
 iphoneVers_stack <- iphoneVers_stack + theme_minimal(); iphoneVers_stack
 iphoneVers_stack <- iphoneVers_stack + theme(plot.title = element_text(size=14, face="bold"),panel.grid.major.x = element_blank()); iphoneVers_stack
 iphoneVers_stack <- iphoneVers_stack + scale_x_date(labels = date_format("%m/%d")); iphoneVers_stack
+iphoneVers_stack <- iphoneVers_stack + scale_fill_manual(values=cbPalette); iphoneVers_stack
 
 #stacked plot: GMB by android app Version
 androidVers_title <- paste("Global Android App Version: GMB Share \n", minDate, "to", maxDate); androidVers_title
@@ -45,6 +50,7 @@ androidVers_stack <- androidVers_stack + scale_y_continuous(breaks=pretty_breaks
 androidVers_stack <- androidVers_stack + theme_minimal(); androidVers_stack
 androidVers_stack <- androidVers_stack + theme(plot.title = element_text(size=14, face="bold"),panel.grid.major.x = element_blank()); androidVers_stack
 androidVers_stack <- androidVers_stack + scale_x_date(labels = date_format("%m/%d")); androidVers_stack
+androidVers_stack <- androidVers_stack + scale_fill_manual(values=cbPalette); androidVers_stack
 
 
 

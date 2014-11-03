@@ -1,6 +1,9 @@
 #if restart script from just here
 df<-df2
 
+#change <NA> to Unknown
+df[is.na(df)] <- 'Unknown'
+
 #see unique platforms
 unique(df$Platform)
 
@@ -28,7 +31,7 @@ platDateShare$Platform <-factor(platDateShare$Platform, levels=platDateShare[ord
 appVers <- ddply(df,.(Platform,appVersion,created_dt),summarize,gmb=sum(gmb_plan))
 appVersShare <- ddply(appVers,.(created_dt,Platform),transform,gmbDateShare=gmb/sum(gmb))
 ##sort by GMB for filling & then legend
-appVersShare <- appVersShare[with(appVersShare,order(gmb)),]
+#appVersShare <- appVersShare[with(appVersShare,order(gmb)),]
 appVersShare$appVersion <-factor(appVersShare$appVersion, levels=appVersShare[order(appVersShare$gmb,decreasing=TRUE),"appVersion"])
 ##separate sets for iPhone and Android
 iphoneVersShare <- appVersShare[appVersShare$Platform=="iPhone App",]
@@ -44,6 +47,7 @@ topandroidVers <- androidVersCum[rev(order(androidVersCum$gmb)),"appVersion"][1:
 iphoneVersShare <- iphoneVersShare[iphoneVersShare$appVersion %in% topiphoneVers,]
 androidVersShare <- androidVersShare[androidVersShare$appVersion %in% topandroidVers,]
 
+##sort versions and to eliminate stacked line swapping
 
 ##############################
 #app versions over time
