@@ -27,7 +27,7 @@ platDate_stack <- platDate_stack + theme(plot.title = element_text(size=14, face
 platDate_stack <- platDate_stack + scale_x_date(labels = date_format("%m/%d")); platDate_stack
 
 #stacked plot: GMB by iPhone app Version
-iphoneVers_title <- paste("Global iPhone App Version: GMB Share \n", minDate, "to", maxDate); appVers_title
+iphoneVers_title <- paste("Global iPhone App Version: GMB Share \n", minDate, "to", maxDate); iphoneVers_title
 iphoneVers_stack <- ggplot(iphoneVersShare, aes(x = created_dt, y = gmbDateShare, fill = appVersion, group = appVersion))
 iphoneVers_stack <- iphoneVers_stack +  geom_area(position = 'stack'); iphoneVers_stack
 iphoneVers_stack <- iphoneVers_stack + labs(title = iphoneVers_title, 
@@ -39,7 +39,7 @@ iphoneVers_stack <- iphoneVers_stack + theme(plot.title = element_text(size=14, 
 iphoneVers_stack <- iphoneVers_stack + scale_x_date(labels = date_format("%m/%d")); iphoneVers_stack
 
 #stacked plot: GMB by android app Version
-androidVers_title <- paste("Global Android App Version: GMB Share \n", minDate, "to", maxDate); appVers_title
+androidVers_title <- paste("Global Android App Version: GMB Share \n", minDate, "to", maxDate); androidVers_title
 androidVers_stack <- ggplot(androidVersShare, aes(x = created_dt, y = gmbDateShare, fill = appVersion, group = appVersion))
 androidVers_stack <- androidVers_stack +  geom_area(position = 'stack'); androidVers_stack
 androidVers_stack <- androidVers_stack + labs(title = androidVers_title, 

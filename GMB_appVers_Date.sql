@@ -38,8 +38,8 @@ FROM
   from p_soj_cl_v.checkout_metric_item
   
   where
-  created_dt BETWEEN current_date-31 AND current_date-1
-  AND auct_end_dt >= current_date-31
+  created_dt BETWEEN current_date-32 AND current_date-2
+  AND auct_end_dt >= current_date-32
   AND ck_wacko_yn = 'N'
   AND auct_type_code NOT IN (12,15)   
 ) co 
