@@ -1,7 +1,3 @@
-#Find min and max dates
-minDate <- format.Date(minDate, "%m/%d/%y"); minDate
-maxDate <- format.Date(maxDate, "%m/%d/%y"); maxDate
-
 #bar plot of GMB by platform
 platGMB_title <- paste("Global GMB by Platform \n", minDate,"to", maxDate); platGMB_title
 platGMB <- ggplot(plat, aes(x = Platform, y = gmb/1000000))

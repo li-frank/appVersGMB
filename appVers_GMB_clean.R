@@ -1,10 +1,13 @@
+#if restart script from just here
+df<-df2
+
 #see unique platforms
 unique(df$Platform)
 
 #see min & max days
-df$created_dt <- as.Date(df$created_dt)
-minDate <- min(df$created_dt)
-maxDate <- max(df$created_dt)
+df$created_dt <- as.Date(df$created_dt); head(df$created_dt)
+minDate <- min(df$created_dt); minDate
+maxDate <- max(df$created_dt); maxDate
 
 days <- as.numeric(maxDate-minDate+1); days
 
@@ -24,12 +27,13 @@ platDateShare$Platform <-factor(platDateShare$Platform, levels=platDateShare[ord
 #app verions over time (only iPhone & Android)
 appVers <- ddply(df,.(Platform,appVersion,created_dt),summarize,gmb=sum(gmb_plan))
 appVersShare <- ddply(appVers,.(created_dt,Platform),transform,gmbDateShare=gmb/sum(gmb))
-##sort
+##sort by GMB for filling & then legend
 appVersShare <- appVersShare[with(appVersShare,order(gmb)),]
-appVersShare$Platform <-factor(appVersShare$Platform, levels=appVersShare[order(appVersShare$gmb,decreasing=TRUE),"Platform"])
+appVersShare$appVersion <-factor(appVersShare$appVersion, levels=appVersShare[order(appVersShare$gmb,decreasing=TRUE),"appVersion"])
 ##separate sets for iPhone and Android
 iphoneVersShare <- appVersShare[appVersShare$Platform=="iPhone App",]
 androidVersShare <- appVersShare[appVersShare$Platform=="Android App",]
+
 ##only use top cumulative GMB versions
 ###find top versions
 iphoneVersCum <- ddply(iphoneVersShare,.(appVersion),summarize,gmb=sum(gmb))
@@ -39,6 +43,7 @@ topandroidVers <- androidVersCum[rev(order(androidVersCum$gmb)),"appVersion"][1:
 ###filter for top 10 versions
 iphoneVersShare <- iphoneVersShare[iphoneVersShare$appVersion %in% topiphoneVers,]
 androidVersShare <- androidVersShare[androidVersShare$appVersion %in% topandroidVers,]
+
 
 ##############################
 #app versions over time
