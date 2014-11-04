@@ -34,8 +34,8 @@ allStack <- platDate_stack
 #stackLine plot function
 stacker <- function(PlatShareDF,fullName){
   stackTitle <- paste("Global", fullName,"Version: GMB Share \n", minDate, "to", maxDate)
-  stack <- ggplot(PlatShareDF, aes(x = created_dt, y = gmbDateShare, fill = appVersion, group = appVersion))
-  stack <- stack +  geom_area(position = 'stack')
+  stack <- ggplot(data=PlatShareDF, aes(x = created_dt, y = gmbDateShare, fill = appVersion, group=appVersion))
+  stack <- stack +  geom_bar(stat="identity")
   stack <- stack + labs(title = stackTitle, 
                                               x = "Date",
                                               y = "GMB Share (%)")
