@@ -55,7 +55,7 @@ clean <- function(plat){
 ipadShare <- clean('iPad App')
 iphoneShare <- clean('iPhone App')
 androidShare <- clean('Android App')
-mWebShare <- clean('Mobile Web')
+mwebShare <- clean('Mobile Web')
 
 ########################################################################
 ##separate sets for iPhone and Android
