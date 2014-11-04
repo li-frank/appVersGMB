@@ -17,7 +17,8 @@ renderPlot({platGMB_bar})
 ```{r, echo=FALSE}
 inputPanel(
   selectInput("platName", label = "Platform:",
-              choices = c('All', 'iPhone', 'Android', 'iPad','Android'), selected = 'All'))
+              choices = c('All', 'iPhone', 'Android', 'iPad','Android'), selected = 'All')
+  )
 
 renderPlot({
   chartname <- paste0(tolower(platName),'Stack')
