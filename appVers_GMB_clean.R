@@ -58,23 +58,6 @@ androidShare <- clean('Android App')
 mwebShare <- clean('Mobile Web')
 
 ########################################################################
-##separate sets for iPhone and Android
-iphoneVersShare <- appVersShare[appVersShare$Platform=="iPhone App",]
-androidVersShare <- appVersShare[appVersShare$Platform=="Android App",]
-
-##only use top cumulative GMB versions
-###find top versions
-iphoneVersCum <- ddply(iphoneVersShare,.(appVersion),summarize,gmb=sum(gmb))
-androidVersCum <- ddply(androidVersShare,.(appVersion),summarize,gmb=sum(gmb))
-topiphoneVers <- iphoneVersCum[rev(order(iphoneVersCum$gmb)),"appVersion"][1:8]; topiphoneVers
-topandroidVers <- androidVersCum[rev(order(androidVersCum$gmb)),"appVersion"][1:8]; topandroidVers
-###filter for top 10 versions
-iphoneVersShare <- iphoneVersShare[iphoneVersShare$appVersion %in% topiphoneVers,]
-androidVersShare <- androidVersShare[androidVersShare$appVersion %in% topandroidVers,]
-
-##sort versions and to eliminate stacked line swapping
-
-# ##############################
 # #app versions over time
 # platDate_AppVers <- ddply(df,.(Platform, created_dt, appVersion),summarize,gmb=sum(gmb_plan))
 # 
