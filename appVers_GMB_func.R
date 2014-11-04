@@ -27,6 +27,8 @@ platDate_stack <- platDate_stack + theme(plot.title = element_text(size=14, face
 platDate_stack <- platDate_stack + scale_x_date(labels = date_format("%m/%d")); platDate_stack
 platDate_stack <- platDate_stack + scale_fill_manual(values=cbPalette); platDate_stack
 
+##make available for Rmd
+allStack <- platDate_stack
 
 ##########################################################
 #stackLine plot function

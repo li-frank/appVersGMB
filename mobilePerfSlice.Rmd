@@ -16,9 +16,12 @@ renderPlot({platGMB_bar})
 
 ```{r, echo=FALSE}
 inputPanel(
-  selectInput("plat", label = "Platform:",
+  selectInput("platName", label = "Platform:",
               choices = c('All', 'iPhone', 'Android', 'iPad','Android'), selected = 'All')
-trm(plat)
+
+chartname <- paste0(tolower(platName),'Stack')
+print(get(chartname))
+
 iphoneStack <- stacker(iphoneShare,"iPhone App")
 ipadStack <- stacker(ipadShare,"iPad App")
 androidStack <- stacker(androidShare,"Android App")
@@ -39,7 +42,6 @@ mwebStack <- stacker(mwebShare,"mWeb App")
 #   lines(dens, col = "blue")
 #})
 ```
-
 ## What will I use this for?
 
 - Eliminate churn from partner questions, enabling self-diagnosis
