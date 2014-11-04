@@ -43,7 +43,7 @@ stacker <- function(PlatShareDF,fullName){
   stack <- stack + theme_minimal()
   stack <- stack + theme(plot.title = element_text(size=14, face="bold"),panel.grid.major.x = element_blank())
   stack <- stack + scale_x_date(labels = date_format("%m/%d"))
-  stack <- stack + scale_fill_manual(values=cbPalette); stack
+  stack <- stack + scale_fill_manual(values=cbPalette)
   return(stack)
   
 }

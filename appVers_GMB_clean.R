@@ -26,11 +26,11 @@ platDateShare <- platDateShare[with(platDateShare,order(gmb)),]
 ##sort Platform factor by GMB (for legend)
 platDateShare$Platform <-factor(platDateShare$Platform, levels=platDateShare[order(platDateShare$gmb,decreasing=TRUE),"Platform"])
 
-#app verions over time
+#app versions over time
 appVers <- ddply(df,.(Platform,appVersion,created_dt),summarize,gmb=sum(gmb_plan))
 appVersShare <- ddply(appVers,.(created_dt,Platform),transform,gmbDateShare=gmb/sum(gmb))
 ##sort by GMB for filling & then legend
-#appVersShare <- appVersShare[with(appVersShare,order(appVersion,decreasing=TRUE)),]
+appVersShare <- appVersShare[with(appVersShare,order(appVersion,decreasing=TRUE)),]
 appVersShare$appVersion <-factor(appVersShare$appVersion, levels=appVersShare[order(appVersShare$gmb,decreasing=TRUE),"appVersion"])
 
 ########################################################################
@@ -47,7 +47,6 @@ clean <- function(plat){
   VersCum <- ddply(VersShare,.(appVersion),summarize,gmb=sum(gmb))
   topVers <- VersCum[rev(order(VersCum$gmb)),"appVersion"][1:8]
   VersShare <- VersShare[VersShare$appVersion %in% topVers,]
-  
   return(VersShare)
   #paste(plat,VersCum)<-ddply(appVers,.(appVersion),summarize,gmb=sum(gmb))
 }
