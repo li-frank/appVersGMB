@@ -19,12 +19,10 @@ inputPanel(
   selectInput("platName", label = "Platform:",
               choices = c('All', 'iPhone', 'Android', 'iPad','Android'), selected = 'All')
   )
-
 renderPlot({
-  chartname <- as.name(paste0(tolower(platName),"Stack"))
+  chartname <- 'iphoneStack'
   print(get(chartname))
 })
-
 #,
 #  sliderInput("bw_adjust", label = "Bandwidth adjustment:",
 #              min = 0.2, max = 2, value = 1, step = 0.2)
