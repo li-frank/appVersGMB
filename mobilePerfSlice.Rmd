@@ -21,7 +21,7 @@ inputPanel(
   )
 
 renderPlot({
-  chartname <- paste0(tolower(platName),"Stack")
+  chartname <- as.name(paste0(tolower(platName),"Stack"))
   print(get(chartname))
 })
 
