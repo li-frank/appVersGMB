@@ -17,13 +17,12 @@ platGMB_bar <- platGMB_bar + geom_text(label=scales::percent(plat$gmb/sum(plat$g
 ##? by country?
 platDate_title <- paste("Global GMB Share by Platform \n", minDate,"to", maxDate); platDate_title
 platDate_stack <- ggplot(platDateShare, aes(x = created_dt, y = gmbDateShare, fill = Platform, group=Platform)) 
-platDate_stack <- platDate_stack +  geom_area(position = 'stack'); platDate_stack
+platDate_stack <- platDate_stack +  geom_bar(stat="identity"); platDate_stack
 platDate_stack <- platDate_stack + labs(title = platDate_title, 
-                                  x = "Date",
                                   y = "GMB Share (%)"); platDate_stack
 platDate_stack <- platDate_stack + scale_y_continuous(breaks=pretty_breaks(), labels = percent); platDate_stack
 platDate_stack <- platDate_stack + theme_minimal(); platDate_stack
-platDate_stack <- platDate_stack + theme(plot.title = element_text(size=14, face="bold"),panel.grid.major.x = element_blank()); platDate_stack
+platDate_stack <- platDate_stack + theme(plot.title = element_text(size=14, face="bold"),panel.grid.major.x = element_blank(),axis.title.x = element_blank()); platDate_stack
 platDate_stack <- platDate_stack + scale_x_date(labels = date_format("%m/%d")); platDate_stack
 platDate_stack <- platDate_stack + scale_fill_manual(values=cbPalette); platDate_stack
 
@@ -41,7 +40,7 @@ stacker <- function(PlatShareDF,fullName){
                                               y = "GMB Share (%)")
   stack <- stack + scale_y_continuous(breaks=pretty_breaks(), labels = percent)
   stack <- stack + theme_minimal()
-  stack <- stack + theme(plot.title = element_text(size=14, face="bold"),panel.grid.major.x = element_blank())
+  stack <- stack + theme(plot.title = element_text(size=14, face="bold"),panel.grid.major.x = element_blank(),axis.title.x = element_blank())
   stack <- stack + scale_x_date(labels = date_format("%m/%d"))
   stack <- stack + scale_fill_manual(values=cbPalette)
   return(stack)

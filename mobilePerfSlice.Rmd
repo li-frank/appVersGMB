@@ -6,37 +6,81 @@ output: ioslides_presentation
 runtime: shiny
 
 ---
-## Mobile GMB Share by Country
-```{r, echo=FALSE}
+## Mobile GMB Share by Platform
+```{r, echo=FALSE,warning=FALSE}
+library('plyr')
+library('ggplot2')
+library('scales')
+library('ggthemes')
+
+source("appVers_GMB_clean.R")
+source("appVers_GMB_func.R")
 
 renderPlot({platGMB_bar})
 ```
 
-## Mobile GMB Share by App/Version
+## iPhone GMB Share by Version
+```{r, echo=FALSE,warning=FALSE}
+library('plyr')
+library('ggplot2')
+library('scales')
+library('ggthemes')
 
-```{r, echo=FALSE}
-inputPanel(
-  selectInput("platName", label = "Platform:",
-              choices = c('All', 'iPhone', 'Android', 'iPad','Android'), selected = 'All')
-  )
+source("appVers_GMB_clean.R")
+source("appVers_GMB_func.R")
+
 renderPlot({
-  chartname <- 'iphoneStack'
-  print(get(chartname))
+  iphoneStack
 })
-#,
-#  sliderInput("bw_adjust", label = "Bandwidth adjustment:",
-#              min = 0.2, max = 2, value = 1, step = 0.2)
-#)
 
-#srenderPlot()
+```
 
-# renderPlot({
-#   hist(faithful$eruptions, probability = TRUE, breaks = as.numeric(input$n_breaks),
-#        xlab = "Duration (minutes)", main = "Geyser eruption duration")
-#   
-#   dens <- density(faithful$eruptions, adjust = input$bw_adjust)
-#   lines(dens, col = "blue")
-#})
+## Android GMB Share by Version
+```{r, echo=FALSE,warning=FALSE}
+library('plyr')
+library('ggplot2')
+library('scales')
+library('ggthemes')
+
+source("appVers_GMB_clean.R")
+source("appVers_GMB_func.R")
+
+renderPlot({
+  androidStack
+})
+
+```
+
+## iPad GMB Share by Version
+```{r, echo=FALSE,warning=FALSE}
+library('plyr')
+library('ggplot2')
+library('scales')
+library('ggthemes')
+
+source("appVers_GMB_clean.R")
+source("appVers_GMB_func.R")
+
+renderPlot({
+  ipadStack
+})
+
+```
+
+## Mobile Web GMB Share by Version
+```{r, echo=FALSE,warning=FALSE}
+library('plyr')
+library('ggplot2')
+library('scales')
+library('ggthemes')
+
+source("appVers_GMB_clean.R")
+source("appVers_GMB_func.R")
+
+renderPlot({
+  mwebStack
+})
+
 ```
 
 ## What will I use this for?
