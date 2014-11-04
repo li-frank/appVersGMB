@@ -12,13 +12,18 @@ runtime: shiny
 renderPlot({platGMB_bar})
 ```
 
-## Mobile GMB Share by App
+## Mobile GMB Share by App/Version
 
 ```{r, echo=FALSE}
 inputPanel(
   selectInput("plat", label = "Platform:",
-              choices = c('All', 'iPhone', 'Android', 'iPad','Android'), selected = 'Aggregate')
-  
+              choices = c('All', 'iPhone', 'Android', 'iPad','Android'), selected = 'All')
+trm(plat)
+iphoneStack <- stacker(iphoneShare,"iPhone App")
+ipadStack <- stacker(ipadShare,"iPad App")
+androidStack <- stacker(androidShare,"Android App")
+mwebStack <- stacker(mwebShare,"mWeb App")
+
 #,
 #  sliderInput("bw_adjust", label = "Bandwidth adjustment:",
 #              min = 0.2, max = 2, value = 1, step = 0.2)
