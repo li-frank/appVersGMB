@@ -1,0 +1,54 @@
+---
+title: "Analyzing Mobile Business Performance"
+author: "Frank Li"
+date: "Monday, November 03, 2014"
+output: ioslides_presentation
+runtime: shiny
+
+---
+
+## Shiny Presentation
+
+This R Markdown presentation is made interactive using Shiny. The viewers of the presentation can change the assumptions underlying what's presented and see the results immediately. 
+
+To learn more, see [Interactive Documents](http://rmarkdown.rstudio.com/authoring_shiny.html).
+
+## Mobile GMB Share by Country
+
+```{r, echo=FALSE}
+inputPanel(
+  selectInput("n_breaks", label = "Number of bins:",
+              choices = c(10, 20, 35, 50), selected = 20),
+  
+  sliderInput("bw_adjust", label = "Bandwidth adjustment:",
+              min = 0.2, max = 2, value = 1, step = 0.2)
+)
+
+renderPlot({
+  hist(faithful$eruptions, probability = TRUE, breaks = as.numeric(input$n_breaks),
+       xlab = "Duration (minutes)", main = "Geyser eruption duration")
+  
+  dens <- density(faithful$eruptions, adjust = input$bw_adjust)
+  lines(dens, col = "blue")
+})
+```
+
+## What will I use this for?
+
+- Eliminate churn from partner questions, enabling self-diagnosis
+    - Q: How is iPhone App Version 3.4.2 ramping up? <br /> 
+    or <br />
+      Q: Which country/platform is tanking overall mobile performance?
+    - A: Go look at shiny
+- Substance over style
+    - Uglier and harder to beautify than Excel, but less manual
+    - Tradeoff: <br />
+    Learning curve & coding time (higher fixed cost)  <br /> 
+    vs.  <br />
+    'Cheap' repeatability & fewer q's (lower marginal cost)
+
+## Slide with R Code and Output
+
+```{r}
+summary(cars)
+```
