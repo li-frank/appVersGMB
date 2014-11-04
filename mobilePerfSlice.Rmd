@@ -6,8 +6,6 @@ output: ioslides_presentation
 runtime: shiny
 
 ---
-## 
-
 ## Mobile GMB Share by Country
 ```{r, echo=FALSE}
 
