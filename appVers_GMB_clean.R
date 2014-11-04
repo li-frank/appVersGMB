@@ -45,7 +45,7 @@ clean <- function(plat){
   VersShare <- appVersShare[appVersShare$Platform==plat,]
   #cumulative GMB
   VersCum <- ddply(VersShare,.(appVersion),summarize,gmb=sum(gmb))
-  topVers <- VersCum[rev(order(VersCum$gmb)),"appVersion"][1:8]
+  topVers <- VersCum[rev(order(VersCum$gmb)),"appVersion"][1:9]
   VersShare <- VersShare[VersShare$appVersion %in% topVers,]
   
   return(VersShare)
