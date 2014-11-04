@@ -11,7 +11,7 @@ sqlPath <- 'C:/Users/frankli/Dropbox (eBayMob&Eng)/FrankL/Rproj/appVersGMB/GMB_a
 sqlQuery <- paste(readLines(sqlPath), collapse=" ")
 df <- dbGetQuery(c,sqlQuery)
 df2 <- df
-############################################
+#############################################
 # #Hardcoded SQL
 # sql<-"
 # SELECT
