@@ -5,18 +5,25 @@ df<-df2
 df[is.na(df)] <- 'Unknown'
 
 #see unique platforms
-unique(df$Platform)
+df$Platform %>% unique
 
 #see min & max days
-df$created_dt <- as.Date(df$created_dt); head(df$created_dt)
-minDate <- min(df$created_dt); minDate
-maxDate <- max(df$created_dt); maxDate
-days <- as.numeric(maxDate-minDate+1); days
+df$created_dt <- df$created_dt %>% as.Date; df$created_dt %>% head
+minDate <- df$created_dt %>% min; minDate
+maxDate <- df$created_dt %>% max; maxDate
+days <- (maxDate-minDate+1) %>% as.numeric; days
 
 #last 30 days' platform summary
-plat <- ddply(df,.(Platform),summarize,gmb=sum(gmb_plan)/days)
+#plat <- ddply(df,.(Platform),summarize,gmb=sum(gmb_plan)/days)
+plat <- df %>% 
+  group_by(Platform) %>%
+  summarize(
+  gmb=(gmb_plan %>% sum %>% `/` (days)))
+
+
 ##sort by GMB
-plat$Platform <-factor(plat$Platform, levels=plat[order(plat$gmb,decreasing=TRUE),"Platform"])
+#plat$Platform <-factor(plat$Platform, levels=plat[order(plat$gmb,decreasing=TRUE),"Platform"])
+plat$Platform <- plat$Platform %>% factor(levels=plat$gmb %>% order(decreasing=TRUE) %>% plat[.,"Platform"])
 
 #platforms over time (global)
 platDate <- ddply(df,.(Platform, created_dt),summarize,gmb=sum(gmb_plan))
@@ -56,12 +63,14 @@ iphoneShare <- clean('iPhone App')
 androidShare <- clean('Android App')
 mwebShare <- clean('Mobile Web')
 
+#platform over time & country
+platDate_Country <- ddply(df,.(Platform, created_dt, buyer_country),summarize,gmb=sum(gmb_plan))
+
+
 ########################################################################
 # #app versions over time
 # platDate_AppVers <- ddply(df,.(Platform, created_dt, appVersion),summarize,gmb=sum(gmb_plan))
 # 
-# #platform over time & country
-# platDate_Country <- ddply(df,.(Platform, created_dt, buyer_country),summarize,gmb=sum(gmb_plan))
 # 
 # #app & platform versions over time & country
 # platDate_appVersCountry <- ddply(df,.(Platform, created_dt, appVersion, buyer_country),summarize,gmb=sum(gmb_plan))

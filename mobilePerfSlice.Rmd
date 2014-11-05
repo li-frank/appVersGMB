@@ -6,29 +6,25 @@ output: ioslides_presentation
 runtime: shiny
 
 ---
-## Mobile GMB Share by Platform
-```{r, echo=FALSE,warning=FALSE}
+```{r,include=FALSE}
 library('plyr')
 library('ggplot2')
 library('scales')
 library('ggthemes')
-
+library('dplyr')
 source("appVers_GMB_clean.R")
 source("appVers_GMB_func.R")
+```
+
+## Mobile GMB Share by Platform
+```{r,echo=FALSE, warning=FALSE}
 
 renderPlot({platGMB_bar})
+
 ```
 
 ## iPhone GMB Share by Version
 ```{r, echo=FALSE,warning=FALSE}
-library('plyr')
-library('ggplot2')
-library('scales')
-library('ggthemes')
-
-source("appVers_GMB_clean.R")
-source("appVers_GMB_func.R")
-
 renderPlot({
   iphoneStack
 })
@@ -37,14 +33,6 @@ renderPlot({
 
 ## Android GMB Share by Version
 ```{r, echo=FALSE,warning=FALSE}
-library('plyr')
-library('ggplot2')
-library('scales')
-library('ggthemes')
-
-source("appVers_GMB_clean.R")
-source("appVers_GMB_func.R")
-
 renderPlot({
   androidStack
 })
@@ -53,14 +41,6 @@ renderPlot({
 
 ## iPad GMB Share by Version
 ```{r, echo=FALSE,warning=FALSE}
-library('plyr')
-library('ggplot2')
-library('scales')
-library('ggthemes')
-
-source("appVers_GMB_clean.R")
-source("appVers_GMB_func.R")
-
 renderPlot({
   ipadStack
 })
@@ -69,14 +49,6 @@ renderPlot({
 
 ## Mobile Web GMB Share by Version
 ```{r, echo=FALSE,warning=FALSE}
-library('plyr')
-library('ggplot2')
-library('scales')
-library('ggthemes')
-
-source("appVers_GMB_clean.R")
-source("appVers_GMB_func.R")
-
 renderPlot({
   mwebStack
 })
