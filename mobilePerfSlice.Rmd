@@ -12,15 +12,16 @@ library('ggplot2')
 library('scales')
 library('ggthemes')
 library('dplyr')
+source("appVers_GMB_load.R")
 source("appVers_GMB_clean.R")
 source("appVers_GMB_func.R")
 ```
 
 ## Mobile GMB Share by Platform
 ```{r,echo=FALSE, warning=FALSE}
-
-renderPlot({platGMB_bar})
-
+renderPlot({
+  platGMB_bar
+  })
 ```
 
 ## iPhone GMB Share by Version
@@ -28,7 +29,6 @@ renderPlot({platGMB_bar})
 renderPlot({
   iphoneStack
 })
-
 ```
 
 ## Android GMB Share by Version
@@ -36,7 +36,6 @@ renderPlot({
 renderPlot({
   androidStack
 })
-
 ```
 
 ## iPad GMB Share by Version
@@ -44,7 +43,6 @@ renderPlot({
 renderPlot({
   ipadStack
 })
-
 ```
 
 ## Mobile Web GMB Share by Version
@@ -52,11 +50,9 @@ renderPlot({
 renderPlot({
   mwebStack
 })
-
 ```
 
 ## What will I use this for?
-
 - Eliminate churn from partner questions, enabling self-diagnosis
     - Q: How is iPhone App Version 3.4.2 ramping up? <br /> 
     or <br />

@@ -15,15 +15,16 @@ days <- (maxDate-minDate+1) %>% as.numeric; days
 
 #last 30 days' platform summary
 #plat <- ddply(df,.(Platform),summarize,gmb=sum(gmb_plan)/days)
-plat <- df %>% 
-  group_by(Platform) %>%
-  summarize(
-  gmb=(gmb_plan %>% sum %>% `/` (days)))
-
+plat <- df %>% ddply(.(Platform),summarize,gmb=(gmb_plan %>% sum %>% `/` (days)))
+#plat <- df %>% 
+#  group_by(Platform) %>%
+#  summarize(
+#  gmb=(gmb_plan %>% sum %>% `/` (days)))
 
 ##sort by GMB
-#plat$Platform <-factor(plat$Platform, levels=plat[order(plat$gmb,decreasing=TRUE),"Platform"])
-plat$Platform <- plat$Platform %>% factor(levels=plat$gmb %>% order(decreasing=TRUE) %>% plat[.,"Platform"])
+plat$Platform <-factor(plat$Platform, levels=plat[order(plat$gmb,decreasing=TRUE),"Platform"])
+#plat$Platform <- plat$Platform %>% 
+#  factor(levels=(plat$gmb %>% order(decreasing=TRUE) %>% plat["Platform"]))
 
 #platforms over time (global)
 platDate <- ddply(df,.(Platform, created_dt),summarize,gmb=sum(gmb_plan))
